@@ -1,9 +1,15 @@
-function App() {
+// ** React Imports
+import { Suspense } from 'react';
+
+// ** Router
+import Router from './router/Router';
+
+const App = () => {
   return (
-    <>
-      <h1 className="text-3xl px-2 font-bold underline py-1">Hello world!</h1>
-    </>
+    <Suspense fallback={null}>
+      <Router />
+    </Suspense>
   );
-}
+};
 
 export default App;

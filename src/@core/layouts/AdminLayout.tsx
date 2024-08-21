@@ -1,10 +1,25 @@
-import React from 'react';
+// ** React Import
+import React, { useEffect, useState } from 'react';
 
-type LayoutProps = {
+// ** Props
+type AdminLayoutProps = {
   children: React.ReactNode;
 };
 
-const Layout = (props: LayoutProps) => {
+const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
+  // ** States
+  const [isMounted, setIsMounted] = useState(false);
+
+  // ** ComponentDidMount
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
     <section id="content" className="flex">
       <div
@@ -180,10 +195,10 @@ const Layout = (props: LayoutProps) => {
             </div>
           </div>
         </div>
-        {props.children}
+        {children}
       </div>
     </section>
   );
 };
 
-export default Layout;
+export default AdminLayout;
